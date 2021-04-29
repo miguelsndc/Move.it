@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/pages/Login.module.css';
+import { FormGroup } from '../../components/FormGroup';
 import { SignWithProviderButton } from '../../components/SignInWithProvider';
 import { InputField } from '../../components/InputField';
 import { useAuth } from '../../contexts/AuthContext';
@@ -20,7 +21,7 @@ export default function Login() {
         <title>Login | Move.it</title>
       </Head>{' '}
       <div className={styles.container}>
-        <form className={styles.formGroup}>
+        <FormGroup>
           <h1>Entrar</h1>
           <SignWithProviderButton imagePath="/icons/google.svg">
             Entrar com Google
@@ -54,7 +55,7 @@ export default function Login() {
             </Link>
           </div>
           <button type="submit">Entrar</button>
-        </form>
+        </FormGroup>
       </div>
     </>
   );
