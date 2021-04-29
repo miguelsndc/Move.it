@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/pages/Signup.module.css';
+import { FormGroup } from '../../components/FormGroup';
 import { InputField } from '../../components/InputField';
 import { SignWithProviderButton } from '../../components/SignInWithProvider';
 import { useAuth } from '../../contexts/AuthContext';
@@ -20,7 +21,7 @@ export default function SignUp() {
         <title>Cadastro | Move.it</title>
       </Head>{' '}
       <div className={styles.container}>
-        <form className={styles.formGroup}>
+        <FormGroup>
           <h1>Cadastrar-se</h1>
           <SignWithProviderButton imagePath="/icons/google.svg">
             Entrar com Google
@@ -60,7 +61,7 @@ export default function SignUp() {
             </Link>
           </div>
           <button type="submit">Cadastrar</button>
-        </form>
+        </FormGroup>
       </div>
     </>
   );
