@@ -1,11 +1,17 @@
 import '../styles/global.css';
+import Head from 'next/head';
 import { AuthProvider } from '../contexts/AuthContext';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AuthProvider>
-      <Component {...pageProps} />
-    </AuthProvider>
+    <>
+      <Head>
+        <title>Move.it</title>
+      </Head>
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
+    </>
   );
 }
 
