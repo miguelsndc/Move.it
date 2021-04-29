@@ -1,93 +1,137 @@
-<p align=center>
-  <img src="https://res.cloudinary.com/dx3vxwusq/image/upload/v1614534243/favicon_nkkpiq.png" alt="Logo move-it">
+
+
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Thanks again! Now go create something AMAZING! :D
+-->
+
+
+
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/miguelsndc/Move.it">
+    <img src="https://res.cloudinary.com/dx3vxwusq/image/upload/v1614534243/favicon_nkkpiq.png" alt="Logo" width="170" height="170">
+  </a>
+
+  <h3 align="center">Move.it</h3>
+
+  <p align="center">
+   A Gamified Pomodoro Website.
+    <br />
+    <br />
+    <a href="https://github.com/miguelsndc/Move.it">View Demo</a>
+    ·
+    <a href="https://github.com/miguelsndc/Move.it/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/miguelsndc/Move.it/issues">Request Feature</a>
+  </p>
 </p>
 
-<h1 align="center">Move.it</h1>
 
-<p align="center">
-  <a href="#language">
-    <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/miguelsndc/moveit">
-  </a>
-  
-  <a href="#repository-size">
-    <img src="https://img.shields.io/github/repo-size/miguelsndc/moveit" alt="Tamanho do repositório">
-  </a>
 
-  <a href="https://github.com/miguelsndc/moveit/issues">
-    <img src="https://img.shields.io/bitbucket/issues-raw/miguelsndc/moveit" alt="Issues">
-  </a>
-  
-  <a href="https://github.com/miguelsndc/moveit/graphs/commit-activity">
-    <img src="https://img.shields.io/github/last-commit/miguelsndc/moveit" alt="Últimos commits">
-  </a>
-  
-</p>
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-<h4 align="center">
-  This is a project developed during the Next Level Week of the Rocketseat platform, with <a href="https://www.linkedin.com/in/diego-schell-fernandes/">Diego Schell Fernandes</a> as instructor.
-</h4>
 
-<p align="center">
-  <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-license">License</a>
-</p>
 
-<p align="center">
-  <a href="https://mooveit-two.vercel.app/" target="_blank">
-    <img alt="Demo on Vercel" src="https://res.cloudinary.com/dx3vxwusq/image/upload/v1613186216/vercel-deploy_x5v2jc.png">
-  </a>
-  
-<h1 align="center">
-  Demo at Vercel ☝🏽
-</h1>
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-## 🚀 Technologies 
-This project was developed by me the following technologies:
+### This project is still under development.
 
-- [CSS](https://www.w3schools.com/css/)
-- [JavaScript](https://www.w3schools.com/js/DEFAULT.asp)
-- [ReactJS](https://reactjs.org)
-- [NextJS](https://nextjs.org)
+### Built With
 
-## 📚 What I've learned?
+This project is built with the following technologies:
+* [React JS](https://reactjs.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Firebase](https://firebase.google.com/?hl=pt-br)
+* [Next JS](https://nextjs.org/)
 
-✔ CSS Modules for page styling;<br>
-✔ ContextAPI to manage state;<br>
-✔ SSR Concepts<br>
-✔ What is Next.js<br>
-✔ TypeScript with React<br>
-✔ Cookies<br>
+<!-- GETTING STARTED -->
+## Getting Started
 
-## :rocket: Wanna see it running locally on your machine ?
+To get a local copy of this project up and running follow these simple example steps:
 
-Before anything, you must have these things installed on your machine:
-- [Node JS](https://nodejs.org/en/)
-- [Git](https://git-scm.com/)
-- A code editor, [VS Code](https://code.visualstudio.com/) is recommended
+### Prerequisites
 
-Now, do the following steps on your terminal:
+To get this project up and running, you must have these installed:
 
-```bash
-# Clone the repository:
-$ git clone https://github.com/miguelsndc/MoveIt.git
+* [Node JS](https://nodejs.org/en/)
+* [Git](https://git-scm.com/)
+* A Package manager, npm (built in node) or [yarn](https://yarnpkg.com/)
 
-# Enter the project folder:
-$ cd Moveit
-  
-# Install the dependencies:
-$ yarn // or npm install
+### Installation
 
-# Running the application in development mode:
-$ yarn dev // or npm run dev
+1. Create a project in [Firebase](https://firebase.google.com/?hl=pt-br) in test mode.
+2. Add a Web APP to your firebase project
+4. Clone the repo
+   ```sh
+   git clone https://github.com/miguelsndc/Move.it.git
+   ```
+5. Create a .env.local file and populate it with the firebase configs of your web app.
+6. Install NPM packages
+   ```sh
+   npm install // yarn 
+   ```
+7. Start the project
+   ```sh
+   npm dev // yarn dev
+   ```
 
-# 💖 Enjoy 💖
-  
-```
+<!-- CONTRIBUTING -->
+## Contributing
 
-## 📝 License
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-This project is under the MIT license. See the [LICENSE](https://github.com/miguelsndc/moveit/blob/main/LICENSE.md) for more information.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
----
 
-Made with 👨🏽‍💻 by Miguel Nogueira 💖  [Connect with me!](https://www.linkedin.com/in/miguel-nogueira-a5a28a1b5/)
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+
+<!-- CONTACT -->
+## Contact
+
+Miguel Nogueira - [Linkedin](https://www.linkedin.com/in/miguel-nogueira-a5a28a1b5/) - mglsndc@gmail.com
+
+## This project is still under development
+
