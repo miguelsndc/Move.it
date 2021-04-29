@@ -1,0 +1,54 @@
+.formGroup {
+  max-width: 420px;
+  width: 100%;
+  padding: 2rem;
+}
+
+.formGroup h1 {
+  color: var(--title);
+  text-align: center;
+  margin-bottom: 1.35rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--title);
+}
+
+.formGroup div {
+  margin: 1.2rem 0;
+}
+
+.formGroup button[type='submit'] {
+  width: 100%;
+  margin: 0.25rem auto;
+  display: block;
+  border: 0;
+  border-radius: 5px;
+  font: inherit;
+  font-weight: 500;
+  color: white;
+
+  background: var(--blue);
+  transition: background 0.2s;
+  height: 45px;
+}
+
+.formGroup button[type='submit']:hover {
+  background: var(--blue-dark);
+}
+
+.formGroup hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid var(--gray-line);
+  margin: 1em 0;
+  padding: 0;
+}
+
+.formGroup a {
+  color: var(--blue);
+  text-decoration: underline;
+}
