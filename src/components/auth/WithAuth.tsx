@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Spinner from '../LoadingSpinner';
 import { useAuth } from '../../contexts/AuthContext';
+import Head from 'next/head';
 
 const withAuth = (Component: any) => (): JSX.Element => {
   const { user } = useAuth();
@@ -12,7 +13,7 @@ const withAuth = (Component: any) => (): JSX.Element => {
 
   useEffect(() => {
     if (!user) {
-      const timeoutRef = setTimeout(() => setUserShouldLogin(true), 1200);
+      const timeoutRef = setTimeout(() => setUserShouldLogin(true), 1250);
 
       setTimeouts([...timeouts, timeoutRef]);
     }
@@ -26,15 +27,17 @@ const withAuth = (Component: any) => (): JSX.Element => {
 
   if (isLoading && !userShouldLogin) {
     return (
-      <div>
-        <Spinner />
-      </div>
+      <>
+        <div>
+          <Spinner />
+        </div>
+      </>
     );
   }
 
   if (userShouldLogin) {
     setUserShouldLogin(false);
-    router.push('/login');
+    router.push('/signup');
   }
 
   if (user) {
