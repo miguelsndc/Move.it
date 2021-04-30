@@ -3,6 +3,7 @@ import challenges from '../../challenges.json';
 
 import Cookies from 'js-cookie';
 import { LevelUpModal } from '../components/LevelUpModal';
+import { useContext } from 'react';
 
 interface Challenge {
   type: 'body' | 'eye';
@@ -30,7 +31,7 @@ interface ChallengesProviderProps {
   challengesCompleted: number;
 }
 
-export const ChallengesContext = createContext({} as ChallengesContextData);
+const ChallengesContext = createContext({} as ChallengesContextData);
 
 export function ChallengesProvider({
   children,
@@ -125,3 +126,5 @@ export function ChallengesProvider({
     </ChallengesContext.Provider>
   );
 }
+
+export const useChallenges = () => useContext(ChallengesContext);
