@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import styles from '../styles/components/SignWithProvider.module.scss';
+import { Button } from './styles';
 
 interface SignWithProviderProps {
   children: ReactNode;
@@ -11,9 +11,9 @@ export function SignWithProviderButton({
   imagePath,
 }: SignWithProviderProps) {
   return (
-    <button className={styles.signWithProviderButton}>
+    <Button>
       <img src={imagePath} alt="Logo" />
       {children}
-    </button>
+    </Button>
   );
 }
