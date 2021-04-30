@@ -16,14 +16,14 @@
   margin-bottom: 1rem;
 
   transition: filter 0.2s;
-}
 
-.signWithProviderButton:hover {
-  filter: brightness(0.97);
-}
+  &:hover {
+    filter: brightness(0.97);
+  }
 
-.signWithProviderButton img {
-  width: 23px;
-  height: 23px;
-  margin-right: 12px;
+  img {
+    width: 23px;
+    height: 23px;
+    margin-right: 12px;
+  }
 }

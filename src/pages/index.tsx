@@ -10,7 +10,7 @@ import { ChallengeBox } from '../components/ChallengeBox';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 
-import styles from '../styles/pages/Home.module.css';
+import styles from '../styles/pages/Home.module.scss';
 import withAuth from '../components/auth/WithAuth';
 
 interface HomeProps {

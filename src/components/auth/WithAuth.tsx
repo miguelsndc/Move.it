@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Spinner from '../LoadingSpinner';
 import { useAuth } from '../../contexts/AuthContext';
-import Head from 'next/head';
+import Spinner from '../LoadingSpinner';
 
 const withAuth = (Component: any) => (): JSX.Element => {
   const { user } = useAuth();

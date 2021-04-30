@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../../styles/pages/Signup.module.css';
+import styles from '../../styles/pages/Signup.module.scss';
 import { FormGroup } from '../../components/FormGroup';
 import { InputField } from '../../components/InputField';
 import { SignWithProviderButton } from '../../components/SignInWithProvider';

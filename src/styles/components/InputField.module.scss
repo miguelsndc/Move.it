@@ -11,13 +11,13 @@
   font: inherit;
 
   transition: all 0.2s;
-}
 
-.inputField:focus {
-  border-color: var(--blue-dark);
-}
+  &:focus {
+    border-color: var(--blue-dark);
+  }
 
-.inputField::placeholder {
-  color: #d8d8d8;
-  font-family: 'Nunito Sans', sans-serif;
+  &::placeholder {
+    color: #d8d8d8;
+    font-family: 'Nunito Sans', sans-serif;
+  }
 }

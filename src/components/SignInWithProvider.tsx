@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import styles from '../styles/components/SignWithProvider.module.css';
+import styles from '../styles/components/SignWithProvider.module.scss';
 
 interface SignWithProviderProps {
   children: ReactNode;

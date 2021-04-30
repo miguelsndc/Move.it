@@ -4,7 +4,7 @@ interface FormGroupProps extends FormHTMLAttributes<HTMLFormElement> {
   children: ReactNode;
 }
 
-import styles from '../styles/components/FormGroup.module.css';
+import styles from '../styles/components/FormGroup.module.scss';
 
 export function FormGroup({ children, ...rest }: FormGroupProps) {
   return (
