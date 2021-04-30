@@ -3,13 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-interface SignUpFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-}
+import { SignUpFormData } from '../pages/signup';
 
 export default function useSignUpForm() {
   const validationSchema = useMemo(
