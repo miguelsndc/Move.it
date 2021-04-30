@@ -1,12 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../../styles/pages/Signup.module.scss';
+import useSignUpForm from '../../hooks/useSignUpForm';
 
-import { FormGroup } from '../../components/FormGroup';
+import { FormGroup, Field } from './styles';
+import { Container, ErrorWarning } from '../../styles/pages/Shared';
 import { SignWithProviderButton } from '../../components/SignInWithProvider';
 import { useAuth } from '../../contexts/AuthContext';
-import useSignUpForm from '../../hooks/useSignUpForm';
 
 export interface SignUpFormData {
   firstName: string;
@@ -31,7 +31,7 @@ export default function SignUp() {
       <Head>
         <title>Cadastro | Move.it</title>
       </Head>{' '}
-      <div className={styles.container}>
+      <Container>
         <FormGroup onSubmit={onSubmit}>
           <h1>Cadastrar-se</h1>
           <SignWithProviderButton imagePath="/icons/google.svg">
@@ -41,60 +41,70 @@ export default function SignUp() {
             Entrar com Google
           </SignWithProviderButton>
           <hr />
-          <div>
+          <Field hasErrors={!!errors.firstName}>
             <label htmlFor="firstName">Nome</label>
             <input
               type="text"
               {...register('firstName', { required: true })}
               placeholder="Digite seu Nome"
             />
-            {errors.firstName && errors.firstName.message}
-          </div>
-          <div>
+            {errors.firstName && (
+              <ErrorWarning>{errors.firstName.message}</ErrorWarning>
+            )}
+          </Field>
+          <Field hasErrors={!!errors.lastName}>
             <label htmlFor="lastName">Sobrenome</label>
             <input
               type="text"
               {...register('lastName')}
               placeholder="Digite seu Sobrenome"
             />
-            {errors.lastName && errors.lastName.message}
-          </div>
-          <div>
+            {errors.lastName && (
+              <ErrorWarning>{errors.lastName.message}</ErrorWarning>
+            )}
+          </Field>
+          <Field hasErrors={!!errors.email}>
             <label htmlFor="email">Email</label>
             <input
               type="email"
               {...register('email')}
               placeholder="Digite seu E-mail"
             />
-            {errors.email && errors.email.message}
-          </div>
-          <div>
+            {errors.email && (
+              <ErrorWarning>{errors.email.message}</ErrorWarning>
+            )}
+          </Field>
+          <Field hasErrors={!!errors.password}>
             <label htmlFor="password">Senha</label>
             <input
               {...register('password')}
               placeholder="Digite sua senha"
               type="password"
             />
-            {errors.password && errors.password.message}
-          </div>
-          <div>
+            {errors.password && (
+              <ErrorWarning>{errors.password.message}</ErrorWarning>
+            )}
+          </Field>
+          <Field hasErrors={!!errors.passwordConfirmation}>
             <label htmlFor="passwordConfirm">Confirme sua senha</label>
             <input
               placeholder="Confirme sua senha"
               {...register('passwordConfirmation')}
               type="password"
             />
-            {errors.passwordConfirmation && errors.passwordConfirmation.message}
-          </div>
-          <div>
+            {errors.passwordConfirmation && (
+              <ErrorWarning>{errors.passwordConfirmation.message}</ErrorWarning>
+            )}
+          </Field>
+          <Field>
             Já tem uma conta ?{' '}
             <Link href="/login">
               <a>Fazer login</a>
             </Link>
-          </div>
+          </Field>
           <button type="submit">Cadastrar</button>
         </FormGroup>
-      </div>
+      </Container>
     </>
   );
 }
