@@ -2,9 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../../styles/pages/Login.module.scss';
-import { FormGroup } from '../../components/FormGroup';
-import { SignWithProviderButton } from '../../components/SignInWithProvider';
-import { InputField } from '../../components/InputField';
+import { SignWithProviderButton } from '../../components/SignInWithProvider/';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Login() {
@@ -17,7 +15,7 @@ export default function Login() {
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Login | Move.it</title>
       </Head>{' '}
       <div className={styles.container}>
@@ -56,7 +54,8 @@ export default function Login() {
           </div>
           <button type="submit">Entrar</button>
         </FormGroup>
-      </div>
+      </div> */}
+      <div>Login</div>
     </>
   );
 }
