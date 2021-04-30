@@ -10,7 +10,8 @@ import { ChallengeBox } from '../components/ChallengeBox';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 
-import styles from '../styles/pages/Home.module.scss';
+import { HomeContainer } from '../styles/pages/Home';
+
 import withAuth from '../components/auth/WithAuth';
 
 interface HomeProps {
@@ -26,7 +27,7 @@ function Home(props: HomeProps) {
       currentExperience={props.currentExperience}
       challengesCompleted={props.challengesCompleted}
     >
-      <div className={styles.container}>
+      <HomeContainer>
         <Head>
           <title>Início | move.it</title>
         </Head>
@@ -43,7 +44,7 @@ function Home(props: HomeProps) {
             </div>
           </section>
         </CountdownProvider>
-      </div>
+      </HomeContainer>
     </ChallengesProvider>
   );
 }
