@@ -12,10 +12,10 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 } else {
-  firebase.app(); // if already initialized, use that one
+  firebase.app();
 }
 
 export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+export const db = firebase.firestore();
 export const githubProvider = new firebase.auth.GithubAuthProvider();
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
