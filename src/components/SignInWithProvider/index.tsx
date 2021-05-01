@@ -1,7 +1,9 @@
 import React, { ReactNode } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import { Button } from './styles';
 
-interface SignWithProviderProps {
+interface SignWithProviderProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   imagePath: string;
 }
@@ -9,9 +11,10 @@ interface SignWithProviderProps {
 export function SignWithProviderButton({
   children,
   imagePath,
+  ...rest
 }: SignWithProviderProps) {
   return (
-    <Button>
+    <Button {...rest}>
       <img src={imagePath} alt="Logo" />
       {children}
     </Button>
