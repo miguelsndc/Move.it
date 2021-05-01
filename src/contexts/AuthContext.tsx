@@ -8,16 +8,15 @@ import {
   useState,
 } from 'react';
 
-import { auth, githubProvider, googleProvider } from '../config/firebase';
+import { auth, db } from '../config/firebase';
 
 interface AuthContextData {
   user: firebase.User | null;
-  signInWithGoogle: () => Promise<firebase.auth.UserCredential>;
-  signInWithGithub: () => Promise<firebase.auth.UserCredential>;
   signInWithEmailAndPassword: (
     email: string,
-    password: string
-  ) => Promise<firebase.auth.UserCredential>;
+    password: string,
+    name: string
+  ) => void;
 }
 
 export const AuthContext = createContext({} as AuthContextData);
@@ -30,16 +29,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const signInWithGoogle = () => {
-    return auth.signInWithPopup(googleProvider);
+  const signInWithEmailAndPassword = async (
+    email: string,
+    password: string,
+    name: string
+  ) => {
+    const credentials = await auth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
+
+    addUserToDatabase(credentials.user.uid, name);
   };
 
-  const signInWithEmailAndPassword = (email: string, password: string) => {
-    return auth.createUserWithEmailAndPassword(email, password);
-  };
-
-  const signInWithGithub = () => {
-    return auth.signInWithPopup(githubProvider);
+  const addUserToDatabase = (uid: string, name: string) => {
+    db.collection('users').doc(uid).set({
+      name,
+      level: 1,
+      currentExperience: 0,
+      challengesCompleted: 0,
+    });
   };
 
   useEffect(() => {
@@ -56,8 +65,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       value={{
         user,
         signInWithEmailAndPassword,
-        signInWithGoogle,
-        signInWithGithub,
       }}
     >
       {loading || children}
