@@ -5,25 +5,15 @@ import useSignUpForm from '../../hooks/useSignUpForm';
 
 import { FormGroup, Field } from './styles';
 import { Container, ErrorWarning } from '../../styles/pages/Shared';
-import { SignWithProviderButton } from '../../components/SignInWithProvider';
-import { useAuth } from '../../contexts/AuthContext';
 
 export interface SignUpFormData {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   password: string;
   passwordConfirmation: string;
 }
 
 export default function SignUp() {
-  const {
-    signInWithGithub,
-    signInWithGoogle,
-    signInWithEmailAndPassword,
-    user,
-  } = useAuth();
-
   const { register, onSubmit, errors } = useSignUpForm();
 
   return (
@@ -34,41 +24,22 @@ export default function SignUp() {
       <Container>
         <FormGroup onSubmit={onSubmit}>
           <h1>Cadastrar-se</h1>
-          <SignWithProviderButton imagePath="/icons/google.svg">
-            Entrar com Google
-          </SignWithProviderButton>
-          <SignWithProviderButton imagePath="/icons/github.svg">
-            Entrar com Google
-          </SignWithProviderButton>
           <hr />
-          <Field hasErrors={!!errors.firstName}>
+          <Field hasErrors={!!errors.name}>
             <label htmlFor="firstName">Nome</label>
             <input
               type="text"
-              {...register('firstName', { required: true })}
-              placeholder="Digite seu Nome"
+              {...register('name')}
+              placeholder="Como você quer ser chamado ?"
             />
-            {errors.firstName && (
-              <ErrorWarning>{errors.firstName.message}</ErrorWarning>
-            )}
-          </Field>
-          <Field hasErrors={!!errors.lastName}>
-            <label htmlFor="lastName">Sobrenome</label>
-            <input
-              type="text"
-              {...register('lastName')}
-              placeholder="Digite seu Sobrenome"
-            />
-            {errors.lastName && (
-              <ErrorWarning>{errors.lastName.message}</ErrorWarning>
-            )}
+            {errors.name && <ErrorWarning>{errors.name.message}</ErrorWarning>}
           </Field>
           <Field hasErrors={!!errors.email}>
             <label htmlFor="email">Email</label>
             <input
               type="email"
               {...register('email')}
-              placeholder="Digite seu E-mail"
+              placeholder="mail@website.com"
             />
             {errors.email && (
               <ErrorWarning>{errors.email.message}</ErrorWarning>
@@ -78,7 +49,7 @@ export default function SignUp() {
             <label htmlFor="password">Senha</label>
             <input
               {...register('password')}
-              placeholder="Digite sua senha"
+              placeholder="Min 6 caracteres"
               type="password"
             />
             {errors.password && (
