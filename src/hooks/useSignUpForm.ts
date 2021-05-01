@@ -1,16 +1,20 @@
 import { useForm } from 'react-hook-form';
 import { useCallback, useMemo } from 'react';
+import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { SignUpFormData } from '../pages/signup';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function useSignUpForm() {
   const validationSchema = useMemo(
     () =>
       yup.object().shape({
-        firstName: yup.string().required('Nome é obrigatório'),
-        lastName: yup.string().required('Sobrenome é obrigatório'),
+        name: yup
+          .string()
+          .max(16, 'Máximo de 16 caracteres')
+          .required('Nome é obrigatório'),
         email: yup.string().required('Email é obrigatório'),
         password: yup
           .string()
@@ -39,8 +43,20 @@ export default function useSignUpForm() {
     resolver: yupResolver(validationSchema),
   });
 
+  const router = useRouter();
+  const { signInWithEmailAndPassword, user } = useAuth();
+
   const onSubmit = useCallback((formValues: SignUpFormData) => {
-    console.log(formValues);
+    const { email, passwordConfirmation, name } = formValues;
+    try {
+      signInWithEmailAndPassword(email, passwordConfirmation, name);
+    } catch (e) {
+      console.log(e.message);
+    }
+
+    if (user) {
+      router.push('/');
+    }
   }, []);
 
   return {
