@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { Sidebar } from '../components/Sidebar';
 import { GlobalStyles } from '../styles/global';
 import { AuthProvider } from '../contexts/AuthContext';
 
@@ -10,7 +11,10 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <GlobalStyles />
       <AuthProvider>
-        <Component {...pageProps} />
+        <main style={{ display: 'flex' }}>
+          <Sidebar />
+          <Component {...pageProps} />
+        </main>
       </AuthProvider>
     </>
   );
