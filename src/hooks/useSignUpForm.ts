@@ -43,19 +43,14 @@ export default function useSignUpForm() {
     resolver: yupResolver(validationSchema),
   });
 
-  const router = useRouter();
-  const { signInWithEmailAndPassword, user } = useAuth();
+  const { registerWithEmailAndPassword } = useAuth();
 
   const onSubmit = useCallback((formValues: SignUpFormData) => {
     const { email, passwordConfirmation, name } = formValues;
     try {
-      signInWithEmailAndPassword(email, passwordConfirmation, name);
+      registerWithEmailAndPassword(email, passwordConfirmation, name);
     } catch (e) {
-      console.log(e.message);
-    }
-
-    if (user) {
-      router.push('/');
+      console.log(e.message ?? e.message);
     }
   }, []);
 
