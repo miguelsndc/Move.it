@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { GetServerSideProps } from 'next';
+import withAuth from '../components/auth/WithAuth';
 
 import { CompletedChallenges } from '../components/CompletedChallenges';
 import { Countdown } from '../components/Countdown';
@@ -10,55 +10,69 @@ import { ChallengeBox } from '../components/ChallengeBox';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 
+import { db } from '../config/firebase';
+
 import { HomeContainer } from '../styles/pages/Home';
 
-import withAuth from '../components/auth/WithAuth';
+import { useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { useState } from 'react';
+import { Spinner } from '../components/LoadingSpinner/styles';
 
-interface HomeProps {
-  level: number;
-  currentExperience: number;
-  challengesCompleted: number;
-}
+function Home() {
+  const { user } = useAuth();
 
-function Home(props: HomeProps) {
+  const [level, setLevel] = useState(null);
+  const [currentExperience, setCurrentExperience] = useState(null);
+  const [challengesCompleted, setChallengesCompleted] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    db.collection('users')
+      .doc(user.uid)
+      .onSnapshot((doc) => {
+        const { Level, CurrentExperience, ChallengesCompleted } = doc.data();
+
+        setLevel(Level);
+        setCurrentExperience(CurrentExperience);
+        setChallengesCompleted(ChallengesCompleted);
+
+        setLoading(false);
+      });
+  }, []);
+
   return (
-    <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
-    >
-      <HomeContainer>
-        <Head>
-          <title>Início | move.it</title>
-        </Head>
-        <ExperienceBar />
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-      </HomeContainer>
-    </ChallengesProvider>
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <ChallengesProvider
+          level={level}
+          currentExperience={currentExperience}
+          challengesCompleted={challengesCompleted}
+        >
+          <HomeContainer>
+            <Head>
+              <title>Início | move.it</title>
+            </Head>
+            <ExperienceBar />
+            <CountdownProvider>
+              <section>
+                <div>
+                  <Profile />
+                  <CompletedChallenges />
+                  <Countdown />
+                </div>
+                <div>
+                  <ChallengeBox />
+                </div>
+              </section>
+            </CountdownProvider>
+          </HomeContainer>
+        </ChallengesProvider>
+      )}
+    </>
   );
 }
 
 export default withAuth(Home);
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
-
-  return {
-    props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
-    },
-  };
-};
