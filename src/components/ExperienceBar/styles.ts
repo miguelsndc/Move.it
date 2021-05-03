@@ -37,6 +37,7 @@ export const Bar = styled.div<BarProps>`
   height: 4px;
   border-radius: 4px;
   background: var(--green);
+  transition: width 0.4s;
 `;
 
 export const CurrentExperience = styled.span<CurrentExperienceProps>`
@@ -44,4 +45,6 @@ export const CurrentExperience = styled.span<CurrentExperienceProps>`
   position: absolute;
   top: 12px;
   transform: translateX(-50%);
+
+  transition: left 0.4s;
 `;
