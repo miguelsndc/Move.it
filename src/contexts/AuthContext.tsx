@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { useRouter } from 'next/router';
 
 import {
   createContext,
@@ -12,7 +13,7 @@ import { auth, db } from '../config/firebase';
 
 interface AuthContextData {
   user: firebase.User | null;
-  signInWithEmailAndPassword: (
+  registerWithEmailAndPassword: (
     email: string,
     password: string,
     name: string
@@ -28,8 +29,9 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
-  const signInWithEmailAndPassword = async (
+  const registerWithEmailAndPassword = async (
     email: string,
     password: string,
     name: string
@@ -39,16 +41,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       password
     );
 
-    addUserToDatabase(credentials.user.uid, name);
+    addUserToDatabase(credentials, name);
   };
 
-  const addUserToDatabase = (uid: string, name: string) => {
+  const addUserToDatabase = (
+    credentials: firebase.auth.UserCredential,
+    name: string
+  ) => {
+    const { uid } = credentials.user;
+
     db.collection('users').doc(uid).set({
       name,
-      level: 1,
-      currentExperience: 0,
-      challengesCompleted: 0,
+      Level: 1,
+      CurrentExperience: 0,
+      ChallengesCompleted: 0,
     });
+
+    router.push(`/`);
   };
 
   useEffect(() => {
@@ -64,7 +73,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     <AuthContext.Provider
       value={{
         user,
-        signInWithEmailAndPassword,
+        registerWithEmailAndPassword,
       }}
     >
       {loading || children}
