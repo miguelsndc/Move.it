@@ -4,10 +4,9 @@ import { IconContext } from 'react-icons';
 import { GoGear } from 'react-icons/go';
 import { IoPodium } from 'react-icons/io5';
 import { FaUser } from 'react-icons/fa';
-
 import { SidebarContainer } from './styles';
 
-export function Sidebar() {
+function Sidebar() {
   return (
     <SidebarContainer>
       <IconContext.Provider value={{ color: '#5965e0', size: '2rem' }}>
@@ -36,3 +35,5 @@ export function Sidebar() {
     </SidebarContainer>
   );
 }
+
+export default Sidebar;
