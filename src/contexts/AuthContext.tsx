@@ -55,6 +55,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       Level: 1,
       CurrentExperience: 0,
       ChallengesCompleted: 0,
+      PhotoUrl: '',
     });
 
     router.push(`/`);
