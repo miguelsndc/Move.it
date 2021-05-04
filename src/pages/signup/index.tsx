@@ -3,15 +3,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import useSignUpForm from '../../hooks/useSignUpForm';
 
-import { FormGroup, Field } from './styles';
-import { Container, ErrorWarning } from '../../styles/pages/Shared';
-
-export interface SignUpFormData {
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-}
+import { FormGroup, Field } from '../../styles/Signup';
+import { Container, ErrorWarning } from '../../styles/Shared';
 
 export default function SignUp() {
   const { register, onSubmit, errors } = useSignUpForm();
