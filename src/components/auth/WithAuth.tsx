@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../contexts/AuthContext';
+
 import Spinner from '../LoadingSpinner';
 
 const withAuth = (Component: any) => (): JSX.Element => {
@@ -10,9 +11,14 @@ const withAuth = (Component: any) => (): JSX.Element => {
   const [userShouldLogin, setUserShouldLogin] = useState(false);
   const [timeouts, setTimeouts] = useState<NodeJS.Timeout[]>([]);
 
+  const TIMEOUT_TO_SMOOTH_TRANSITION = 1250;
+
   useEffect(() => {
     if (!user) {
-      const timeoutRef = setTimeout(() => setUserShouldLogin(true), 1250);
+      const timeoutRef = setTimeout(
+        () => setUserShouldLogin(true),
+        TIMEOUT_TO_SMOOTH_TRANSITION
+      );
 
       setTimeouts([...timeouts, timeoutRef]);
     }
