@@ -1,10 +1,15 @@
 import { useForm } from 'react-hook-form';
 import { useCallback, useMemo } from 'react';
-import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { SignUpFormData } from '../pages/signup';
+interface SignUpFormData {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
 import { useAuth } from '../contexts/AuthContext';
 
 export default function useSignUpForm() {
@@ -50,7 +55,7 @@ export default function useSignUpForm() {
     try {
       registerWithEmailAndPassword(email, passwordConfirmation, name);
     } catch (e) {
-      console.log(e.message ?? e.message);
+      console.log(e);
     }
   }, []);
 
