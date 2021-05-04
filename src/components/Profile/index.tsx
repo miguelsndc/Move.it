@@ -1,16 +1,19 @@
-import { useChallenges } from '../../contexts/ChallengesContext';
 import { ProfileContainer } from './styles';
 
-export function Profile() {
-  const { level } = useChallenges();
+interface ProfileProps {
+  name: string;
+  photoUrl: string;
+  level: number;
+}
 
+export function Profile({ name, photoUrl, level }: ProfileProps) {
   return (
     <ProfileContainer>
-      <img src="https://github.com/diego3g.png" alt="Diego Fernandes" />
+      <img src={photoUrl ? photoUrl : '/diver.svg'} alt={name} />
       <div>
-        <strong>Diego Fernandes</strong>
+        <strong>{name}</strong>
         <p>
-          <img src=" icons/level.svg" alt="Level" />
+          <img src="icons/level.svg" alt="Level" />
           Level {level}
         </p>
       </div>
