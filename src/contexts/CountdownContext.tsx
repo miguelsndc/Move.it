@@ -42,20 +42,22 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
   function resetCountDown() {
     clearTimeout(countdownTimeout);
     setIsActive(false);
-    setTime(25 * 60);
+    setTime(0.1 * 60);
     setHasFinished(false);
   }
 
   useEffect(() => {
     if (isActive && time > 0) {
       countdownTimeout = setTimeout(() => {
-        setTime(time - 1);
+        setTime((prevTime) => prevTime - 1);
       }, 1000);
     } else if (isActive && time === 0) {
       setHasFinished(true);
       setIsActive(false);
       startNewChallenge();
     }
+
+    return () => clearTimeout(countdownTimeout);
   }, [isActive, time]);
 
   return (
