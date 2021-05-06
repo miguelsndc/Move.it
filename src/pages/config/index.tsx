@@ -1,5 +1,18 @@
 import React from 'react';
+import Sidebar from '../../components/Sidebar';
+import withAuth from '../../components/auth/WithAuth';
+import { useAuth } from '../../contexts/AuthContext';
 
-export default function Config() {
-  return <div>config</div>;
+function Config() {
+  const { signOut } = useAuth();
+
+  return (
+    <main style={{ display: 'flex' }}>
+      <Sidebar />
+      config
+      <button onClick={signOut}>sair</button>
+    </main>
+  );
 }
+
+export default withAuth(Config);
