@@ -1,61 +1,56 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../../styles/pages/Login.module.scss';
-import { SignWithProviderButton } from '../../components/SignInWithProvider/';
+import useLoginForm from '../../hooks/useLoginForm';
+
+import { FormGroup, Field, Container, ErrorWarning } from '../../styles/Form';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Login() {
-  const {
-    signInWithGithub,
-    signInWithGoogle,
-    signInWithEmailAndPassword,
-    user,
-  } = useAuth();
+  const { register, onSubmit, errors } = useLoginForm();
+  const { loginAuthError } = useAuth();
 
   return (
     <>
-      {/* <Head>
+      <Head>
         <title>Login | Move.it</title>
       </Head>{' '}
-      <div className={styles.container}>
-        <FormGroup>
-          <h1>Entrar</h1>
-          <SignWithProviderButton imagePath="/icons/google.svg">
-            Entrar com Google
-          </SignWithProviderButton>
-          <SignWithProviderButton imagePath="/icons/github.svg">
-            Entrar com Google
-          </SignWithProviderButton>
+      <Container>
+        <FormGroup onSubmit={onSubmit}>
+          <h1>Login</h1>
           <hr />
-          <div>
+          {loginAuthError && <ErrorWarning>{loginAuthError}</ErrorWarning>}
+          <Field hasErrors={!!errors.email}>
             <label htmlFor="email">Email</label>
-            <InputField
+            <input
               type="email"
-              name="email"
-              placeholder="Digite seu E-mail"
+              {...register('email')}
+              placeholder="mail@website.com"
             />
-          </div>
-          <div>
+            {errors.email && (
+              <ErrorWarning>{errors.email.message}</ErrorWarning>
+            )}
+          </Field>
+          <Field hasErrors={!!errors.password}>
             <label htmlFor="password">Senha</label>
-            <InputField
-              name="password"
-              placeholder="Digite sua senha"
+            <input
+              {...register('password')}
+              placeholder="Min 6 caracteres"
               type="password"
             />
-          </div>
-          <hr />
-
-          <div>
+            {errors.password && (
+              <ErrorWarning>{errors.password.message}</ErrorWarning>
+            )}
+          </Field>
+          <Field>
             Ainda não tem uma conta ?{' '}
             <Link href="/signup">
-              <a>Cadastre-se</a>
+              <a>Cadastrar</a>
             </Link>
-          </div>
+          </Field>
           <button type="submit">Entrar</button>
         </FormGroup>
-      </div> */}
-      <div>Login</div>
+      </Container>
     </>
   );
 }
