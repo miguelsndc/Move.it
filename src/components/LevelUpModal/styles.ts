@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Overlay = styled.div`
   background: rgba(242, 243, 245, 0.8);
@@ -12,7 +12,7 @@ export const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+`
 export const LevelUpContainer = styled.div`
   background: ${(props) => props.theme.colors.white};
 
@@ -55,4 +55,4 @@ export const LevelUpContainer = styled.div`
     border: 0;
     font-size: 0;
   }
-`;
+`

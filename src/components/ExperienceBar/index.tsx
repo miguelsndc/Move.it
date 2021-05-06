@@ -1,12 +1,12 @@
-import { useChallenges } from '../../contexts/ChallengesContext';
+import { useChallenges } from '../../contexts/ChallengesContext'
 
-import { CurrentExperience, ExperienceBarContainer, Bar } from './styles';
+import { CurrentExperience, ExperienceBarContainer, Bar } from './styles'
 
 export function ExperienceBar() {
-  const { currentExperience, experienceToNextLevel } = useChallenges();
+  const { currentExperience, experienceToNextLevel } = useChallenges()
 
   const percentToNextLevel =
-    Math.round(currentExperience * 100) / experienceToNextLevel;
+    Math.round(currentExperience * 100) / experienceToNextLevel
 
   return (
     <ExperienceBarContainer>
@@ -19,5 +19,5 @@ export function ExperienceBar() {
       </div>
       <span>{experienceToNextLevel} xp</span>
     </ExperienceBarContainer>
-  );
+  )
 }

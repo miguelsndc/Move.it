@@ -1,9 +1,9 @@
-import { useChallenges } from '../../contexts/ChallengesContext';
+import { useChallenges } from '../../contexts/ChallengesContext'
 
-import { Overlay, LevelUpContainer } from './styles';
+import { Overlay, LevelUpContainer } from './styles'
 
 export function LevelUpModal() {
-  const { level, closeLevelUpModal } = useChallenges();
+  const { level, closeLevelUpModal } = useChallenges()
 
   return (
     <Overlay>
@@ -18,5 +18,5 @@ export function LevelUpModal() {
         </button>
       </LevelUpContainer>
     </Overlay>
-  );
+  )
 }

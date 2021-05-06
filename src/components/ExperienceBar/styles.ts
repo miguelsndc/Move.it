@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 interface BarProps {
-  BarWidth: number;
+  BarWidth: number
 }
 
 interface CurrentExperienceProps {
-  DistanceFromStart: number;
+  DistanceFromStart: number
 }
 
 export const ExperienceBarContainer = styled.header`
@@ -30,7 +30,7 @@ export const ExperienceBarContainer = styled.header`
       background: ${(props) => props.theme.colors.green};
     }
   }
-`;
+`
 
 export const Bar = styled.div<BarProps>`
   width: ${(props) => `${props.BarWidth}%`};
@@ -38,7 +38,7 @@ export const Bar = styled.div<BarProps>`
   border-radius: 4px;
   background: ${(props) => props.theme.colors.green};
   transition: width 0.4s;
-`;
+`
 
 export const CurrentExperience = styled.span<CurrentExperienceProps>`
   left: ${(props) => `${props.DistanceFromStart}%`};
@@ -47,4 +47,4 @@ export const CurrentExperience = styled.span<CurrentExperienceProps>`
   transform: translateX(-50%);
 
   transition: left 0.4s;
-`;
+`

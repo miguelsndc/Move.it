@@ -1,10 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import withAuth from '../../components/auth/WithAuth';
-import { Spinner } from '../../components/LoadingSpinner/styles';
-import Sidebar from '../../components/Sidebar';
-import { db } from '../../config/firebase';
+import React from 'react'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import withAuth from '../../components/auth/WithAuth'
+import { Spinner } from '../../components/LoadingSpinner/styles'
+import Sidebar from '../../components/Sidebar'
+import { db } from '../../config/firebase'
 import {
   Container,
   Rank,
@@ -13,27 +13,27 @@ import {
   Position,
   Profile,
   Experience,
-} from '../../styles/Ranking';
+} from '../../styles/Ranking'
 
 interface User {
-  id: string;
-  ChallengesCompleted: number;
-  CurrentExperience: number;
-  Level: number;
-  PhotoUrl: string;
-  name: string;
+  id: string
+  ChallengesCompleted: number
+  CurrentExperience: number
+  Level: number
+  PhotoUrl: string
+  name: string
 }
 
 function Ranking(HomeProps: any) {
-  console.log(HomeProps);
-  const usersRef = db.collection('users');
-  const [docs, setDocs] = useState<User[]>();
-  const [loading, setLoading] = useState(true);
+  console.log(HomeProps)
+  const usersRef = db.collection('users')
+  const [docs, setDocs] = useState<User[]>()
+  const [loading, setLoading] = useState(true)
 
   async function sortUsersByChallengesCompleted() {
-    const snapshot = usersRef.orderBy('ChallengesCompleted').get();
-    const descendingOrderSnapshot: User[] = [];
-    (await snapshot).docs.forEach((doc) => {
+    const snapshot = usersRef.orderBy('ChallengesCompleted').get()
+    const descendingOrderSnapshot: User[] = []
+    ;(await snapshot).docs.forEach((doc) => {
       const {
         id,
         ChallengesCompleted,
@@ -41,7 +41,7 @@ function Ranking(HomeProps: any) {
         Level,
         PhotoUrl,
         name,
-      } = doc.data();
+      } = doc.data()
       descendingOrderSnapshot.push({
         id,
         ChallengesCompleted,
@@ -49,16 +49,16 @@ function Ranking(HomeProps: any) {
         Level,
         PhotoUrl,
         name,
-      });
-    });
-    descendingOrderSnapshot.reverse();
-    setDocs(descendingOrderSnapshot);
-    setLoading(false);
+      })
+    })
+    descendingOrderSnapshot.reverse()
+    setDocs(descendingOrderSnapshot)
+    setLoading(false)
   }
 
   useEffect(() => {
-    sortUsersByChallengesCompleted();
-  }, []);
+    sortUsersByChallengesCompleted()
+  }, [])
 
   return (
     <main style={{ display: 'flex' }}>
@@ -93,13 +93,13 @@ function Ranking(HomeProps: any) {
                     </Experience>
                   </UserInfo>
                 </InfoWrapper>
-              );
+              )
             })}
           </Rank>
         </Container>
       )}
     </main>
-  );
+  )
 }
 
-export default withAuth(Ranking);
+export default withAuth(Ranking)

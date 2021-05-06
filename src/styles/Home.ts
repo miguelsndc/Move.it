@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components'
 
 const FadeIn = keyframes`
   0% {
@@ -7,7 +7,7 @@ const FadeIn = keyframes`
   100% {
     opacity: 1;
   }
-`;
+`
 
 export const HomeContainer = styled.div`
   height: 100vh;
@@ -28,4 +28,4 @@ export const HomeContainer = styled.div`
   }
 
   animation: ${FadeIn} 0.5s linear;
-`;
+`

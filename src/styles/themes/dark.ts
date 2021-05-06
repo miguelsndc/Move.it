@@ -14,6 +14,6 @@ const darkTheme = {
     blueDark: '#4953b8',
     blueTwitter: '#2aa9e0',
   },
-};
+}
 
-export default darkTheme;
+export default darkTheme

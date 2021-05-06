@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const ProfileContainer = styled.div`
   display: flex;
@@ -28,4 +28,4 @@ export const ProfileContainer = styled.div`
       }
     }
   }
-`;
+`

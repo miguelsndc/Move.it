@@ -1,10 +1,10 @@
-import React from 'react';
-import Link from 'next/link';
-import { IconContext } from 'react-icons';
-import { GoGear } from 'react-icons/go';
-import { IoPodium } from 'react-icons/io5';
-import { FaUser } from 'react-icons/fa';
-import { SidebarContainer } from './styles';
+import React from 'react'
+import Link from 'next/link'
+import { IconContext } from 'react-icons'
+import { GoGear } from 'react-icons/go'
+import { IoPodium } from 'react-icons/io5'
+import { FaUser } from 'react-icons/fa'
+import { SidebarContainer } from './styles'
 
 function Sidebar() {
   return (
@@ -33,7 +33,7 @@ function Sidebar() {
         </div>
       </IconContext.Provider>
     </SidebarContainer>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

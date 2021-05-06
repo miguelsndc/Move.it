@@ -1,14 +1,14 @@
-import React from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
-import useSignUpForm from '../../hooks/useSignUpForm';
+import React from 'react'
+import Head from 'next/head'
+import Link from 'next/link'
+import useSignUpForm from '../../hooks/useSignUpForm'
 
-import { FormGroup, Field, Container, ErrorWarning } from '../../styles/Form';
-import { useAuth } from '../../contexts/AuthContext';
+import { FormGroup, Field, Container, ErrorWarning } from '../../styles/Form'
+import { useAuth } from '../../contexts/AuthContext'
 
 export default function SignUp() {
-  const { register, onSubmit, errors } = useSignUpForm();
-  const { signupAuthError } = useAuth();
+  const { register, onSubmit, errors } = useSignUpForm()
+  const { signupAuthError } = useAuth()
 
   return (
     <>
@@ -72,5 +72,5 @@ export default function SignUp() {
         </FormGroup>
       </Container>
     </>
-  );
+  )
 }

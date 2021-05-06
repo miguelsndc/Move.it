@@ -1,10 +1,10 @@
-import { useCountdown } from '../../contexts/CountdownContext';
+import { useCountdown } from '../../contexts/CountdownContext'
 
 import {
   CountdownButton,
   CountdownButtonActive,
   CountdownContainer,
-} from './styles';
+} from './styles'
 
 export function Countdown() {
   const {
@@ -14,10 +14,10 @@ export function Countdown() {
     seconds,
     resetCountDown,
     startCountDown,
-  } = useCountdown();
+  } = useCountdown()
 
-  const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
-  const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
+  const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('')
+  const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('')
 
   return (
     <div>
@@ -49,5 +49,5 @@ export function Countdown() {
         </>
       )}
     </div>
-  );
+  )
 }

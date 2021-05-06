@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 interface FieldProps {
-  hasErrors?: boolean;
+  hasErrors?: boolean
 }
 
 export const FormGroup = styled.form`
@@ -47,7 +47,7 @@ export const FormGroup = styled.form`
     color: ${(props) => props.theme.colors.blue};
     text-decoration: underline;
   }
-`;
+`
 
 export const Field = styled.div<FieldProps>`
   margin: 1.2rem 0;
@@ -82,7 +82,7 @@ export const Field = styled.div<FieldProps>`
     margin-bottom: 5px;
     color: ${(props) => props.theme.colors.title};
   }
-`;
+`
 
 export const Container = styled.div`
   width: 100%;
@@ -91,9 +91,9 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+`
 
 export const ErrorWarning = styled.div`
   color: ${(props) => props.theme.colors.red};
   margin: 0.5rem 0;
-`;
+`

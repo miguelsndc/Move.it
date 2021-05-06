@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const SidebarContainer = styled.aside`
   height: 100vh;
@@ -13,4 +13,4 @@ export const SidebarContainer = styled.aside`
   div {
     margin: 1rem 0;
   }
-`;
+`

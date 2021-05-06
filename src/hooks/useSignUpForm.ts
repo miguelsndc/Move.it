@@ -1,17 +1,17 @@
-import { useForm } from 'react-hook-form';
-import { useCallback, useMemo } from 'react';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { useForm } from 'react-hook-form'
+import { useCallback, useMemo } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 
 interface SignUpFormData {
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
+  name: string
+  email: string
+  password: string
+  passwordConfirmation: string
 }
 
-import { useAuth } from '../contexts/AuthContext';
-import { useRouter } from 'next/router';
+import { useAuth } from '../contexts/AuthContext'
+import { useRouter } from 'next/router'
 
 export default function useSignUpForm() {
   const validationSchema = useMemo(
@@ -30,16 +30,16 @@ export default function useSignUpForm() {
           name: 'password-confirmation',
           message: 'As senhas devem coincidir',
           test: function () {
-            const { password, passwordConfirmation } = this.parent;
+            const { password, passwordConfirmation } = this.parent
             if (password && passwordConfirmation !== password) {
-              return false;
+              return false
             }
-            return true;
+            return true
           },
         }),
       }),
     []
-  );
+  )
 
   const {
     register,
@@ -47,21 +47,21 @@ export default function useSignUpForm() {
     formState: { errors },
   } = useForm<SignUpFormData>({
     resolver: yupResolver(validationSchema),
-  });
+  })
 
-  const { registerWithEmailAndPassword } = useAuth();
-  const router = useRouter();
+  const { registerWithEmailAndPassword } = useAuth()
+  const router = useRouter()
 
   const onSubmit = useCallback((formValues: SignUpFormData) => {
-    const { email, passwordConfirmation, name } = formValues;
+    const { email, passwordConfirmation, name } = formValues
 
-    registerWithEmailAndPassword(email, passwordConfirmation, name);
-    router.push('/');
-  }, []);
+    registerWithEmailAndPassword(email, passwordConfirmation, name)
+    router.push('/')
+  }, [])
 
   return {
     register,
     onSubmit: handleSubmit(onSubmit),
     errors,
-  };
+  }
 }

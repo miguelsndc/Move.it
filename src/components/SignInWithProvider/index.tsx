@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
-import { ButtonHTMLAttributes } from 'react';
-import { Button } from './styles';
+import React, { ReactNode } from 'react'
+import { ButtonHTMLAttributes } from 'react'
+import { Button } from './styles'
 
 interface SignWithProviderProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
-  imagePath: string;
+  children: ReactNode
+  imagePath: string
 }
 
 export function SignWithProviderButton({
@@ -18,5 +18,5 @@ export function SignWithProviderButton({
       <img src={imagePath} alt="Logo" />
       {children}
     </Button>
-  );
+  )
 }

@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
-import { db } from '../config/firebase';
-import { useAuth } from '../contexts/AuthContext';
+import { useEffect, useState } from 'react'
+import { db } from '../config/firebase'
+import { useAuth } from '../contexts/AuthContext'
 
 function useUser() {
-  const { user } = useAuth();
+  const { user } = useAuth()
 
-  const userRef = db.collection('users').doc(user.uid);
+  const userRef = db.collection('users').doc(user.uid)
 
-  const [level, setLevel] = useState(1);
-  const [currentExperience, setCurrentExperience] = useState(0);
-  const [challengesCompleted, setChallengesCompleted] = useState(0);
-  const [name, setName] = useState('');
-  const [photoUrl, setPhotoUrl] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [level, setLevel] = useState(1)
+  const [currentExperience, setCurrentExperience] = useState(0)
+  const [challengesCompleted, setChallengesCompleted] = useState(0)
+  const [loading, setLoading] = useState(true)
+  const [photoUrl, setPhotoUrl] = useState('')
+  const [name, setName] = useState('')
 
   useEffect(() => {
     userRef.get().then((doc) => {
@@ -23,18 +23,18 @@ function useUser() {
           ChallengesCompleted,
           name,
           PhotoUrl,
-        } = doc.data();
+        } = doc.data()
 
-        setLevel(Level);
-        setCurrentExperience(CurrentExperience);
-        setChallengesCompleted(ChallengesCompleted);
-        setName(name);
-        setPhotoUrl(PhotoUrl);
+        setLevel(Level)
+        setCurrentExperience(CurrentExperience)
+        setChallengesCompleted(ChallengesCompleted)
+        setPhotoUrl(PhotoUrl)
+        setName(name)
 
-        setLoading(false);
+        setLoading(false)
       }
-    });
-  }, []);
+    })
+  }, [])
 
   return {
     userRef,
@@ -44,7 +44,7 @@ function useUser() {
     name,
     photoUrl,
     loading,
-  };
+  }
 }
 
-export default useUser;
+export default useUser

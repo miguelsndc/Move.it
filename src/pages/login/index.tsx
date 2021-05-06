@@ -1,14 +1,14 @@
-import React from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
-import useLoginForm from '../../hooks/useLoginForm';
+import React from 'react'
+import Head from 'next/head'
+import Link from 'next/link'
+import useLoginForm from '../../hooks/useLoginForm'
 
-import { FormGroup, Field, Container, ErrorWarning } from '../../styles/Form';
-import { useAuth } from '../../contexts/AuthContext';
+import { FormGroup, Field, Container, ErrorWarning } from '../../styles/Form'
+import { useAuth } from '../../contexts/AuthContext'
 
 export default function Login() {
-  const { register, onSubmit, errors } = useLoginForm();
-  const { loginAuthError } = useAuth();
+  const { register, onSubmit, errors } = useLoginForm()
+  const { loginAuthError } = useAuth()
 
   return (
     <>
@@ -52,5 +52,5 @@ export default function Login() {
         </FormGroup>
       </Container>
     </>
-  );
+  )
 }

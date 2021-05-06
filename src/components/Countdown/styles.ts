@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const CountdownContainer = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ export const CountdownContainer = styled.div`
     font-size: 6.25rem;
     margin: 0 0.5rem;
   }
-`;
+`
 export const CountdownButton = styled.button.attrs({ type: 'button' })`
   width: 100%;
   height: 5rem;
@@ -70,7 +70,7 @@ export const CountdownButton = styled.button.attrs({ type: 'button' })`
     cursor: not-allowed;
     border-bottom: 5px solid ${(props) => props.theme.colors.green};
   }
-`;
+`
 export const CountdownButtonActive = styled(CountdownButton)`
   background: ${(props) => props.theme.colors.white};
   color: ${(props) => props.theme.colors.title};
@@ -79,4 +79,4 @@ export const CountdownButtonActive = styled(CountdownButton)`
     background: ${(props) => props.theme.colors.red};
     color: ${(props) => props.theme.colors.white};
   }
-`;
+`

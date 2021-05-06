@@ -1,20 +1,20 @@
-import Head from 'next/head';
-import withAuth from '../components/auth/WithAuth';
-import Sidebar from '../components/Sidebar';
+import Head from 'next/head'
+import withAuth from '../components/auth/WithAuth'
+import Sidebar from '../components/Sidebar'
 
-import { CompletedChallenges } from '../components/CompletedChallenges';
-import { Countdown } from '../components/Countdown';
-import { ExperienceBar } from '../components/ExperienceBar';
-import { Profile } from '../components/Profile';
-import { ChallengeBox } from '../components/ChallengeBox';
+import { CompletedChallenges } from '../components/CompletedChallenges'
+import { Countdown } from '../components/Countdown'
+import { ExperienceBar } from '../components/ExperienceBar'
+import { Profile } from '../components/Profile'
+import { ChallengeBox } from '../components/ChallengeBox'
 
-import { CountdownProvider } from '../contexts/CountdownContext';
-import { ChallengesProvider } from '../contexts/ChallengesContext';
+import { CountdownProvider } from '../contexts/CountdownContext'
+import { ChallengesProvider } from '../contexts/ChallengesContext'
 
-import { HomeContainer } from '../styles/Home';
+import { HomeContainer } from '../styles/Home'
 
-import { Spinner } from '../components/LoadingSpinner/styles';
-import useUser from '../hooks/useUser';
+import { Spinner } from '../components/LoadingSpinner/styles'
+import useUser from '../hooks/useUser'
 
 function Home() {
   const {
@@ -24,7 +24,7 @@ function Home() {
     loading,
     photoUrl,
     name,
-  } = useUser();
+  } = useUser()
 
   return (
     <>
@@ -46,7 +46,7 @@ function Home() {
               <CountdownProvider>
                 <section>
                   <div>
-                    <Profile level={level} photoUrl={photoUrl} name={name} />
+                    <Profile photoUrl={photoUrl} name={name} />
                     <CompletedChallenges />
                     <Countdown />
                   </div>
@@ -60,7 +60,7 @@ function Home() {
         </ChallengesProvider>
       )}
     </>
-  );
+  )
 }
 
-export default withAuth(Home);
+export default withAuth(Home)

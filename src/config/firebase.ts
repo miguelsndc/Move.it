@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from 'firebase'
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -7,15 +7,15 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-};
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-} else {
-  firebase.app();
 }
 
-export const auth = firebase.auth();
-export const db = firebase.firestore();
-export const githubProvider = new firebase.auth.GithubAuthProvider();
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig)
+} else {
+  firebase.app()
+}
+
+export const auth = firebase.auth()
+export const db = firebase.firestore()
+export const githubProvider = new firebase.auth.GithubAuthProvider()
+export const googleProvider = new firebase.auth.GoogleAuthProvider()

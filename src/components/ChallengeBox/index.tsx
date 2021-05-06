@@ -1,5 +1,5 @@
-import { useChallenges } from '../../contexts/ChallengesContext';
-import { useCountdown } from '../../contexts/CountdownContext';
+import { useChallenges } from '../../contexts/ChallengesContext'
+import { useCountdown } from '../../contexts/CountdownContext'
 
 import {
   ChallengeActive,
@@ -7,24 +7,20 @@ import {
   ChallengeNotActive,
   ChallengeFailedButton,
   ChallengeSucceededButton,
-} from './styles';
+} from './styles'
 
 export function ChallengeBox() {
-  const {
-    activeChallenge,
-    resetChallenge,
-    completeChallenge,
-  } = useChallenges();
+  const { activeChallenge, resetChallenge, completeChallenge } = useChallenges()
 
-  const { resetCountDown } = useCountdown();
+  const { resetCountDown } = useCountdown()
 
   function handleChallengeSucceeded() {
-    completeChallenge();
-    resetCountDown();
+    completeChallenge()
+    resetCountDown()
   }
   function handleChallengeFailed() {
-    resetChallenge();
-    resetCountDown();
+    resetChallenge()
+    resetCountDown()
   }
 
   return (
@@ -58,5 +54,5 @@ export function ChallengeBox() {
         </ChallengeNotActive>
       )}
     </ChallengeBoxContainer>
-  );
+  )
 }

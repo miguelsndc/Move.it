@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
@@ -13,18 +13,18 @@ export const Container = styled.div`
   h1 {
     font-size: 2.6rem;
   }
-`;
+`
 
 export const Rank = styled.div`
   flex: 1 1 0%;
   margin-top: 2.5rem;
-`;
+`
 
 export const InfoWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 1rem 0;
-`;
+`
 
 export const Position = styled.div`
   padding: 2.25rem;
@@ -33,7 +33,7 @@ export const Position = styled.div`
 
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-`;
+`
 
 export const UserInfo = styled.div`
   display: flex;
@@ -45,7 +45,7 @@ export const UserInfo = styled.div`
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   width: 100%;
-`;
+`
 
 export const Profile = styled.div`
   display: flex;
@@ -64,7 +64,7 @@ export const Profile = styled.div`
       margin-bottom: 5px;
     }
   }
-`;
+`
 export const Experience = styled.div`
   width: 34%;
   display: flex;
@@ -83,4 +83,4 @@ export const Experience = styled.div`
       margin-right: 0.5rem;
     }
   }
-`;
+`

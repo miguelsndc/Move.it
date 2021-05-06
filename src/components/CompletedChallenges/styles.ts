@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const CompletedChallengesContainer = styled.div`
   display: flex;
@@ -18,4 +18,4 @@ export const CompletedChallengesContainer = styled.div`
   span:last-child {
     font-size: 1.5rem;
   }
-`;
+`

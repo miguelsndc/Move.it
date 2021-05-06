@@ -14,6 +14,6 @@ const lightTheme = {
     blueDark: '#4953b8',
     blueTwitter: '#2aa9e0',
   },
-};
+}
 
-export default lightTheme;
+export default lightTheme

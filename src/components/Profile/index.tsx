@@ -1,13 +1,13 @@
-import { useChallenges } from '../../contexts/ChallengesContext';
-import { ProfileContainer } from './styles';
+import { useChallenges } from '../../contexts/ChallengesContext'
+import { ProfileContainer } from './styles'
 
 interface ProfileProps {
-  name: string;
-  photoUrl: string;
+  name: string
+  photoUrl: string
 }
 
 export function Profile({ name, photoUrl }: ProfileProps) {
-  const { level } = useChallenges();
+  const { level } = useChallenges()
 
   return (
     <ProfileContainer>
@@ -20,5 +20,5 @@ export function Profile({ name, photoUrl }: ProfileProps) {
         </p>
       </div>
     </ProfileContainer>
-  );
+  )
 }
