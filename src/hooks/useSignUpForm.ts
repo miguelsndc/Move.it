@@ -11,6 +11,7 @@ interface SignUpFormData {
 }
 
 import { useAuth } from '../contexts/AuthContext';
+import { useRouter } from 'next/router';
 
 export default function useSignUpForm() {
   const validationSchema = useMemo(
@@ -49,14 +50,13 @@ export default function useSignUpForm() {
   });
 
   const { registerWithEmailAndPassword } = useAuth();
+  const router = useRouter();
 
   const onSubmit = useCallback((formValues: SignUpFormData) => {
     const { email, passwordConfirmation, name } = formValues;
-    try {
-      registerWithEmailAndPassword(email, passwordConfirmation, name);
-    } catch (e) {
-      console.log(e);
-    }
+
+    registerWithEmailAndPassword(email, passwordConfirmation, name);
+    router.push('/');
   }, []);
 
   return {
