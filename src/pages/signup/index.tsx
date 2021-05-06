@@ -3,11 +3,12 @@ import Head from 'next/head';
 import Link from 'next/link';
 import useSignUpForm from '../../hooks/useSignUpForm';
 
-import { FormGroup, Field } from '../../styles/Signup';
-import { Container, ErrorWarning } from '../../styles/Shared';
+import { FormGroup, Field, Container, ErrorWarning } from '../../styles/Form';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function SignUp() {
   const { register, onSubmit, errors } = useSignUpForm();
+  const { signupAuthError } = useAuth();
 
   return (
     <>
@@ -18,6 +19,7 @@ export default function SignUp() {
         <FormGroup onSubmit={onSubmit}>
           <h1>Cadastrar-se</h1>
           <hr />
+          {signupAuthError && <ErrorWarning>{signupAuthError}</ErrorWarning>}
           <Field hasErrors={!!errors.name}>
             <label htmlFor="firstName">Nome</label>
             <input
