@@ -1,5 +1,4 @@
 import firebase from 'firebase';
-import { useRouter } from 'next/router';
 
 import {
   createContext,
@@ -13,11 +12,15 @@ import { auth, db } from '../config/firebase';
 
 interface AuthContextData {
   user: firebase.User | null;
+  signupAuthError: string;
+  loginAuthError: string;
   registerWithEmailAndPassword: (
     email: string,
     password: string,
     name: string
   ) => void;
+  signOut: () => void;
+  loginWithEmailAndPassword: (email: string, password: string) => void;
 }
 
 export const AuthContext = createContext({} as AuthContextData);
@@ -29,19 +32,41 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
+  const [signupAuthError, setSignupAuthError] = useState<string>(null);
+  const [loginAuthError, setLoginAuthError] = useState<string>(null);
 
   const registerWithEmailAndPassword = async (
     email: string,
     password: string,
     name: string
   ) => {
-    const credentials = await auth.createUserWithEmailAndPassword(
-      email,
-      password
-    );
+    try {
+      const credentials = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
 
-    addUserToDatabase(credentials, name);
+      addUserToDatabase(credentials, name);
+    } catch (error) {
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          setSignupAuthError('Este email já está em uso.');
+          break;
+        case 'auth/invalid-email':
+          setSignupAuthError('Email inválido.');
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  const signOut = async () => {
+    try {
+      await auth.signOut();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const addUserToDatabase = (
@@ -51,14 +76,33 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const { uid } = credentials.user;
 
     db.collection('users').doc(uid).set({
+      id: uid,
       name,
       Level: 1,
       CurrentExperience: 0,
       ChallengesCompleted: 0,
       PhotoUrl: '',
     });
+  };
 
-    router.push(`/`);
+  const loginWithEmailAndPassword = async (email: string, password: string) => {
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      switch (error.code) {
+        case 'auth/invalid-email':
+          setLoginAuthError('Email inválido');
+          break;
+        case 'auth/user-not-found':
+          setLoginAuthError('Usuário não encontrado');
+          break;
+        case 'auth/wrong-password':
+          setLoginAuthError('Senha incorreta.');
+          break;
+        default:
+          break;
+      }
+    }
   };
 
   useEffect(() => {
@@ -75,6 +119,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       value={{
         user,
         registerWithEmailAndPassword,
+        loginWithEmailAndPassword,
+        signupAuthError,
+        loginAuthError,
+        signOut,
       }}
     >
       {loading || children}
