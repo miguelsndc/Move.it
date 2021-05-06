@@ -8,7 +8,7 @@ export const Button = styled.button`
   justify-content: center;
 
   background: transparent;
-  border: 1px solid var(--gray-line);
+  border: 1px solid ${(props) => props.theme.colors.grayLine};
   border-radius: 5px;
   background: white;
 

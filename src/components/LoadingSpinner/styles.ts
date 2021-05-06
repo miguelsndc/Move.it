@@ -23,8 +23,8 @@ export const Spinner = styled.div`
     margin-top: -60px;
     margin-left: -35px;
     border-radius: 50%;
-    border: 4px solid var(--gray-line);
-    border-top-color: var(--blue-dark);
+    border: 4px solid ${(props) => props.theme.colors.grayLine};
+    border-top-color: ${(props) => props.theme.colors.blueDark};
     animation: ${SpinningAnimation} 0.55s linear infinite;
   }
 `;

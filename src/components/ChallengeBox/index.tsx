@@ -15,6 +15,7 @@ export function ChallengeBox() {
     resetChallenge,
     completeChallenge,
   } = useChallenges();
+
   const { resetCountDown } = useCountdown();
 
   function handleChallengeSucceeded() {

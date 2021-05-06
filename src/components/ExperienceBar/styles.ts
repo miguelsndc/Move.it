@@ -20,14 +20,14 @@ export const ExperienceBarContainer = styled.header`
     flex: 1;
     height: 4px;
     border-radius: 4px;
-    background: var(--gray-line);
+    background: ${(props) => props.theme.colors.grayLine};
     margin: 0 1.5rem;
     position: relative;
 
     & > div {
       height: 4px;
       border-radius: 4px;
-      background: var(--green);
+      background: ${(props) => props.theme.colors.green};
     }
   }
 `;
@@ -36,7 +36,7 @@ export const Bar = styled.div<BarProps>`
   width: ${(props) => `${props.BarWidth}%`};
   height: 4px;
   border-radius: 4px;
-  background: var(--green);
+  background: ${(props) => props.theme.colors.green};
   transition: width 0.4s;
 `;
 

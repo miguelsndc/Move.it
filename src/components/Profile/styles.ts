@@ -16,7 +16,7 @@ export const ProfileContainer = styled.div`
     strong {
       font-size: 1.5rem;
       font-weight: 600;
-      color: var(--title);
+      color: ${(props) => props.theme.colors.title};
     }
 
     p {
