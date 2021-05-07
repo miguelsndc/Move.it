@@ -1,14 +1,16 @@
 import { GetStaticProps } from 'next'
+import { Sidebar } from '../../components/Sidebar'
 import { db } from '../../config/firebase'
 import { useAuth } from '../../contexts/AuthContext'
 import RankingTemplate from '../../templates/RankingTemplate'
 import { redirectTo } from '../../utils/redirectTo'
 
 interface UserProps {
-  ChallengesCompleted: number
-  CurrentExperience: number
-  Level: number
-  PhotoUrl: string
+  challengesCompleted: number
+  currentExperience: number
+  totalExperience: number
+  level: number
+  photoURL: string
   id: string
   name: string
 }
@@ -21,7 +23,10 @@ function Ranking(RankingProps: IRankingProps) {
   return (
     <>
       {isLoggedIn ? (
-        <RankingTemplate {...RankingProps} />
+        <main style={{ display: 'flex' }}>
+          <Sidebar />
+          <RankingTemplate {...RankingProps} />
+        </main>
       ) : (
         redirectTo('/login')
       )}
@@ -37,7 +42,7 @@ export const getStaticProps: GetStaticProps = async () => {
   try {
     const querySnapshot = await db
       .collection('users')
-      .orderBy('ChallengesCompleted')
+      .orderBy('totalExperience')
       .get()
 
     querySnapshot.forEach((doc) => {
@@ -46,6 +51,8 @@ export const getStaticProps: GetStaticProps = async () => {
   } catch (error) {
     console.log(error)
   }
+
+  users.reverse()
 
   return {
     props: {
