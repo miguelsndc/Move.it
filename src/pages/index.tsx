@@ -1,18 +1,45 @@
 import HomeTemplate from '../templates/HomeTemplate'
+import { Sidebar } from '../components/Sidebar'
 import { redirectTo } from '../utils/redirectTo'
 import { useAuth } from '../contexts/AuthContext'
+import { useEffect, useState } from 'react'
+import { db } from '../config/firebase'
+import { Spinner } from '../components/LoadingSpinner/styles'
 
 function Home() {
-  const { isLoggedIn } = useAuth()
-  const test = {
-    level: 1,
-    currentExperience: 1,
-    challengesCompleted: 1,
-    photoUrl: '1',
-    name: ' ',
-  }
+  const { isLoggedIn, user } = useAuth()
+  const [loading, setLoading] = useState(true)
+  const [currentUserData, setCurrentUserData] = useState(null)
 
-  return <>{isLoggedIn ? <HomeTemplate {...test} /> : redirectTo('/login')}</>
+  useEffect(() => {
+    if (user) {
+      db.collection('users')
+        .doc(user.uid)
+        .get()
+        .then((doc) => {
+          setCurrentUserData(doc.data())
+          setLoading(false)
+        })
+    }
+  }, [])
+
+  return (
+    <main style={{ display: 'flex' }}>
+      <Sidebar />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          {' '}
+          {isLoggedIn ? (
+            <HomeTemplate {...currentUserData} />
+          ) : (
+            redirectTo('/login')
+          )}
+        </>
+      )}
+    </main>
+  )
 }
 
 export default Home
