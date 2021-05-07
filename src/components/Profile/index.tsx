@@ -1,4 +1,3 @@
-import { useAuth } from '../../contexts/AuthContext'
 import { useChallenges } from '../../contexts/ChallengesContext'
 import { ProfileContainer } from './styles'
 
