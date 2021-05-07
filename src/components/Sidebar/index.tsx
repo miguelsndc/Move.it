@@ -6,7 +6,7 @@ import { IoPodium } from 'react-icons/io5'
 import { FaUser } from 'react-icons/fa'
 import { SidebarContainer } from './styles'
 
-function Sidebar() {
+export function Sidebar() {
   return (
     <SidebarContainer>
       <IconContext.Provider value={{ color: '#5965e0', size: '2rem' }}>
@@ -35,5 +35,3 @@ function Sidebar() {
     </SidebarContainer>
   )
 }
-
-export default Sidebar
