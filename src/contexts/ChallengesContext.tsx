@@ -95,7 +95,7 @@ export function ChallengesProvider({
         totalExperience: totalExperience,
       })
     }
-  }, [level])
+  }, [totalExperience])
 
   useEffect(() => {
     if (!isFirstFetch) {
@@ -151,7 +151,7 @@ export function ChallengesProvider({
     }
 
     setChallengesCompleted(challengesCompleted + 1)
-    setTotalExperience(totalExperience + finalExperience)
+    setTotalExperience(totalExperience + amount)
     setCurrentExperience(finalExperience)
     setActiveChallenge(null)
   }
