@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import { Sidebar } from '../../components/Sidebar'
 import { db } from '../../config/firebase'
 import { useAuth } from '../../contexts/AuthContext'
@@ -20,15 +21,18 @@ interface IRankingProps {
 
 function Ranking(RankingProps: IRankingProps) {
   const { isLoggedIn } = useAuth()
+  const router = useRouter()
+
+  if (!isLoggedIn) {
+    router.push('/login')
+  }
   return (
     <>
-      {isLoggedIn ? (
+      {isLoggedIn && (
         <main style={{ display: 'flex' }}>
           <Sidebar />
           <RankingTemplate {...RankingProps} />
         </main>
-      ) : (
-        redirectTo('/login')
       )}
     </>
   )

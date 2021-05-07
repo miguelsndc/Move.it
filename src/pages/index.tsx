@@ -1,14 +1,15 @@
 import HomeTemplate from '../templates/HomeTemplate'
 import { Sidebar } from '../components/Sidebar'
-import { redirectTo } from '../utils/redirectTo'
 import { useAuth } from '../contexts/AuthContext'
 import { useEffect, useState } from 'react'
 import { db } from '../config/firebase'
 import { Spinner } from '../components/LoadingSpinner/styles'
+import { useRouter } from 'next/router'
 
 function Home() {
   const { isLoggedIn, user } = useAuth()
   const [loading, setLoading] = useState(true)
+  const router = useRouter()
   const [currentUserData, setCurrentUserData] = useState(null)
 
   useEffect(() => {
@@ -23,20 +24,21 @@ function Home() {
     }
   }, [])
 
+  if (!isLoggedIn) {
+    router.push('/login')
+  }
+
   return (
     <>
       {loading ? (
         <Spinner />
       ) : (
         <>
-          {' '}
-          {isLoggedIn ? (
+          {isLoggedIn && (
             <main style={{ display: 'flex' }}>
               <Sidebar />
               <HomeTemplate {...currentUserData} />
             </main>
-          ) : (
-            redirectTo('/login')
           )}
         </>
       )}
