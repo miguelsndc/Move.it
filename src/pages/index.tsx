@@ -24,21 +24,23 @@ function Home() {
   }, [])
 
   return (
-    <main style={{ display: 'flex' }}>
-      <Sidebar />
+    <>
       {loading ? (
         <Spinner />
       ) : (
         <>
           {' '}
           {isLoggedIn ? (
-            <HomeTemplate {...currentUserData} />
+            <main style={{ display: 'flex' }}>
+              <Sidebar />
+              <HomeTemplate {...currentUserData} />
+            </main>
           ) : (
             redirectTo('/login')
           )}
         </>
       )}
-    </main>
+    </>
   )
 }
 
