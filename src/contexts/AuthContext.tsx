@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react'
 
-import { auth, db, githubProvider } from '../config/firebase'
+import { auth, db } from '../config/firebase'
 
 interface AuthContextData {
   user: firebase.User | null
@@ -22,7 +22,6 @@ interface AuthContextData {
   ) => void
   signOut: () => void
   loginWithEmailAndPassword: (email: string, password: string) => void
-  signInWithGithub: () => void
 }
 
 export const AuthContext = createContext({} as AuthContextData)
@@ -72,19 +71,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }
 
-  const addUserToDatabase = (
+  const addUserToDatabase = async (
     credentials: firebase.auth.UserCredential,
     name: string
   ) => {
     const { uid } = credentials.user
 
-    db.collection('users').doc(uid).set({
+    await db.collection('users').doc(uid).set({
       id: uid,
       name,
-      Level: 1,
-      CurrentExperience: 0,
-      ChallengesCompleted: 0,
-      PhotoUrl: '',
+      level: 1,
+      currentExperience: 0,
+      challengesCompleted: 0,
+      totalExperience: 0,
+      photoURL: '',
     })
   }
 
@@ -123,11 +123,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     return unsubscriber
   }, [])
-
-  const signInWithGithub = async () => {
-    return await auth.signInWithRedirect(githubProvider)
-  }
-
   return (
     <AuthContext.Provider
       value={{
@@ -136,7 +131,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         loginWithEmailAndPassword,
         signupAuthError,
         loginAuthError,
-        signInWithGithub,
         isLoggedIn,
         signOut,
       }}
