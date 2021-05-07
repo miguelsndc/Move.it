@@ -5,6 +5,8 @@ import { LevelUpModal } from '../components/LevelUpModal'
 
 import { useContext } from 'react'
 import useUser from '../hooks/useUser'
+import { db } from '../config/firebase'
+import { useAuth } from './AuthContext'
 
 interface Challenge {
   type: 'body' | 'eye'
@@ -30,6 +32,7 @@ interface ChallengesProviderProps {
   level: number
   currentExperience: number
   challengesCompleted: number
+  totalExperience: number
 }
 
 const ChallengesContext = createContext({} as ChallengesContextData)
@@ -38,14 +41,14 @@ export function ChallengesProvider({
   children,
   ...rest
 }: ChallengesProviderProps) {
-  const [level, setLevel] = useState(rest.level ?? 1)
+  const { user } = useAuth()
+  const [level, setLevel] = useState(1)
 
-  const [currentExperience, setCurrentExperience] = useState(
-    rest.currentExperience ?? 0
-  )
-  const [challengesCompleted, setChallengesCompleted] = useState(
-    rest.challengesCompleted ?? 0
-  )
+  const [currentExperience, setCurrentExperience] = useState(0)
+  const [challengesCompleted, setChallengesCompleted] = useState(0)
+  const [isFirstFetch, setIsFirstFetch] = useState(true)
+
+  const [totalExperience, setTotalExperience] = useState(0)
 
   const [activeChallenge, setActiveChallenge] = useState(null)
   const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false)
@@ -55,25 +58,59 @@ export function ChallengesProvider({
   const { userRef } = useUser()
 
   useEffect(() => {
+    db.collection('users')
+      .doc(user.uid)
+      .get()
+      .then((doc) => {
+        const {
+          level,
+          currentExperience,
+          totalExperience,
+          challengesCompleted,
+        } = doc.data()
+
+        setLevel(level)
+        setCurrentExperience(currentExperience)
+        setTotalExperience(totalExperience)
+        setChallengesCompleted(challengesCompleted)
+        setIsFirstFetch(false)
+      })
+  }, [])
+
+  useEffect(() => {
     Notification.requestPermission()
   }, [])
 
   useEffect(() => {
-    userRef.update({
-      Level: level,
-    })
+    if (!isFirstFetch) {
+      userRef.update({
+        level: level,
+      })
+    }
   }, [level])
 
   useEffect(() => {
-    userRef.update({
-      CurrentExperience: currentExperience,
-    })
+    if (!isFirstFetch) {
+      userRef.update({
+        totalExperience: totalExperience,
+      })
+    }
+  }, [level])
+
+  useEffect(() => {
+    if (!isFirstFetch) {
+      userRef.update({
+        currentExperience: currentExperience,
+      })
+    }
   }, [currentExperience])
 
   useEffect(() => {
-    userRef.update({
-      ChallengesCompleted: challengesCompleted,
-    })
+    if (!isFirstFetch) {
+      userRef.update({
+        challengesCompleted: challengesCompleted,
+      })
+    }
   }, [challengesCompleted])
 
   function levelUp() {
@@ -114,6 +151,7 @@ export function ChallengesProvider({
     }
 
     setChallengesCompleted(challengesCompleted + 1)
+    setTotalExperience(totalExperience + finalExperience)
     setCurrentExperience(finalExperience)
     setActiveChallenge(null)
   }
