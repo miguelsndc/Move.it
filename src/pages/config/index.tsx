@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from '../../components/Sidebar'
+import { Sidebar } from '../../components/Sidebar'
 import { useAuth } from '../../contexts/AuthContext'
 import { redirectTo } from '../../utils/redirectTo'
 
