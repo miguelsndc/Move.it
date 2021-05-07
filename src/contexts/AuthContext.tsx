@@ -8,12 +8,13 @@ import {
   useState,
 } from 'react'
 
-import { auth, db } from '../config/firebase'
+import { auth, db, githubProvider } from '../config/firebase'
 
 interface AuthContextData {
   user: firebase.User | null
   signupAuthError: string
   loginAuthError: string
+  isLoggedIn: boolean
   registerWithEmailAndPassword: (
     email: string,
     password: string,
@@ -21,6 +22,7 @@ interface AuthContextData {
   ) => void
   signOut: () => void
   loginWithEmailAndPassword: (email: string, password: string) => void
+  signInWithGithub: () => void
 }
 
 export const AuthContext = createContext({} as AuthContextData)
@@ -32,6 +34,7 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [signupAuthError, setSignupAuthError] = useState<string>(null)
   const [loginAuthError, setLoginAuthError] = useState<string>(null)
 
@@ -107,12 +110,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     const unsubscriber = auth.onAuthStateChanged((user) => {
-      setUser(user)
-      setLoading(false)
+      if (user) {
+        setUser(user)
+        setIsLoggedIn(true)
+        setLoading(false)
+      } else {
+        setUser(null)
+        setIsLoggedIn(false)
+        setLoading(false)
+      }
     })
 
     return unsubscriber
   }, [])
+
+  const signInWithGithub = async () => {
+    return await auth.signInWithRedirect(githubProvider)
+  }
 
   return (
     <AuthContext.Provider
@@ -122,6 +136,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         loginWithEmailAndPassword,
         signupAuthError,
         loginAuthError,
+        signInWithGithub,
+        isLoggedIn,
         signOut,
       }}
     >
