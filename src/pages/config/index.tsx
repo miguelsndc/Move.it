@@ -11,8 +11,9 @@ function Config() {
       {isLoggedIn ? (
         <main style={{ display: 'flex' }}>
           <Sidebar />
-          config
-          <button onClick={signOut}>sair</button>
+          <div style={{ margin: '0 auto' }}>
+            <button onClick={signOut}>sair</button>
+          </div>
         </main>
       ) : (
         redirectTo('/login')
