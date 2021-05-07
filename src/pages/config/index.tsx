@@ -1,18 +1,24 @@
 import React from 'react'
 import Sidebar from '../../components/Sidebar'
-import withAuth from '../../components/auth/WithAuth'
 import { useAuth } from '../../contexts/AuthContext'
+import { redirectTo } from '../../utils/redirectTo'
 
 function Config() {
-  const { signOut } = useAuth()
+  const { signOut, isLoggedIn } = useAuth()
 
   return (
-    <main style={{ display: 'flex' }}>
-      <Sidebar />
-      config
-      <button onClick={signOut}>sair</button>
-    </main>
+    <>
+      {isLoggedIn ? (
+        <main style={{ display: 'flex' }}>
+          <Sidebar />
+          config
+          <button onClick={signOut}>sair</button>
+        </main>
+      ) : (
+        redirectTo('/login')
+      )}
+    </>
   )
 }
 
-export default withAuth(Config)
+export default Config
