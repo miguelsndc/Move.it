@@ -52,10 +52,10 @@ export default function useSignUpForm() {
   const { registerWithEmailAndPassword } = useAuth()
   const router = useRouter()
 
-  const onSubmit = useCallback((formValues: SignUpFormData) => {
+  const onSubmit = useCallback(async (formValues: SignUpFormData) => {
     const { email, passwordConfirmation, name } = formValues
 
-    registerWithEmailAndPassword(email, passwordConfirmation, name)
+    await registerWithEmailAndPassword(email, passwordConfirmation, name)
     router.push('/')
   }, [])
 
