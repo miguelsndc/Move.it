@@ -1,17 +1,18 @@
+import { useAuth } from '../../contexts/AuthContext'
 import { useChallenges } from '../../contexts/ChallengesContext'
 import { ProfileContainer } from './styles'
 
-interface ProfileProps {
+interface IProfileProps {
   name: string
-  photoUrl: string
+  photoURL: string
 }
 
-export function Profile({ name, photoUrl }: ProfileProps) {
+export function Profile({ name, photoURL }: IProfileProps) {
   const { level } = useChallenges()
 
   return (
     <ProfileContainer>
-      <img src={photoUrl ? photoUrl : '/diver.svg'} alt={name} />
+      <img src={photoURL ? photoURL : '/diver.svg'} alt={name} />
       <div>
         <strong>{name}</strong>
         <p>
