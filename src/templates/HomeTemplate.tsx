@@ -17,7 +17,8 @@ interface UserProps {
   level: number
   currentExperience: number
   challengesCompleted: number
-  photoUrl: string
+  totalExperience: number
+  photoURL: string
   name: string
 }
 
@@ -25,36 +26,35 @@ export default function HomeTemplate({
   level,
   currentExperience,
   challengesCompleted,
-  photoUrl,
   name,
+  photoURL,
+  totalExperience,
 }: UserProps) {
   return (
     <ChallengesProvider
       level={level}
       currentExperience={currentExperience}
       challengesCompleted={challengesCompleted}
+      totalExperience={totalExperience}
     >
-      <main style={{ display: 'flex' }}>
-        <Sidebar />
-        <HomeContainer>
-          <Head>
-            <title>Início | move.it</title>
-          </Head>
-          <ExperienceBar />
-          <CountdownProvider>
-            <section>
-              <div>
-                <Profile photoUrl={photoUrl} name={name} />
-                <CompletedChallenges />
-                <Countdown />
-              </div>
-              <div>
-                <ChallengeBox />
-              </div>
-            </section>
-          </CountdownProvider>
-        </HomeContainer>
-      </main>
+      <HomeContainer>
+        <Head>
+          <title>Início | move.it</title>
+        </Head>
+        <ExperienceBar />
+        <CountdownProvider>
+          <section>
+            <div>
+              <Profile photoURL={photoURL} name={name} />
+              <CompletedChallenges />
+              <Countdown />
+            </div>
+            <div>
+              <ChallengeBox />
+            </div>
+          </section>
+        </CountdownProvider>
+      </HomeContainer>
     </ChallengesProvider>
   )
 }
