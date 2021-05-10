@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import { useCallback } from 'react'
 
 import {
   createContext,
@@ -63,13 +64,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
     try {
       await auth.signOut()
     } catch (e) {
       console.log(e)
     }
-  }
+  }, [])
 
   const addUserToDatabase = async (
     credentials: firebase.auth.UserCredential,

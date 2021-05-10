@@ -37,10 +37,7 @@ interface ChallengesProviderProps {
 
 const ChallengesContext = createContext({} as ChallengesContextData)
 
-export function ChallengesProvider({
-  children,
-  ...rest
-}: ChallengesProviderProps) {
+export function ChallengesProvider({ children }: ChallengesProviderProps) {
   const { user } = useAuth()
   const [level, setLevel] = useState(1)
 
