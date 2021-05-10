@@ -56,6 +56,7 @@ export const Profile = styled.div`
     width: 4rem;
     height: 4rem;
     margin-right: 0.75rem;
+    border-radius: 50%;
   }
 
   div {
