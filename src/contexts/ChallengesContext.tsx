@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import useUser from '../hooks/useUser'
 import { db } from '../config/firebase'
 import { useAuth } from './AuthContext'
+import { useRef } from 'react'
 
 interface Challenge {
   type: 'body' | 'eye'
@@ -43,7 +44,7 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
 
   const [currentExperience, setCurrentExperience] = useState(0)
   const [challengesCompleted, setChallengesCompleted] = useState(0)
-  const [isFirstFetch, setIsFirstFetch] = useState(true)
+  const isFirstFetch = useRef(true)
 
   const [totalExperience, setTotalExperience] = useState(0)
 
@@ -70,7 +71,7 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
         setCurrentExperience(currentExperience)
         setTotalExperience(totalExperience)
         setChallengesCompleted(challengesCompleted)
-        setIsFirstFetch(false)
+        isFirstFetch.current = false
       })
   }, [])
 
@@ -79,7 +80,7 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
   }, [])
 
   useEffect(() => {
-    if (!isFirstFetch) {
+    if (!isFirstFetch.current) {
       userRef.update({
         level: level,
       })
@@ -87,7 +88,7 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
   }, [level])
 
   useEffect(() => {
-    if (!isFirstFetch) {
+    if (!isFirstFetch.current) {
       userRef.update({
         totalExperience: totalExperience,
       })
@@ -95,7 +96,7 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
   }, [totalExperience])
 
   useEffect(() => {
-    if (!isFirstFetch) {
+    if (!isFirstFetch.current) {
       userRef.update({
         currentExperience: currentExperience,
       })
@@ -103,7 +104,7 @@ export function ChallengesProvider({ children }: ChallengesProviderProps) {
   }, [currentExperience])
 
   useEffect(() => {
-    if (!isFirstFetch) {
+    if (!isFirstFetch.current) {
       userRef.update({
         challengesCompleted: challengesCompleted,
       })
